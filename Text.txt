@@ -1,0 +1,5 @@
+pipeline.Add(new BsonDocument("$match", new BsonDocument("$or", new BsonArray
+{
+    new BsonDocument("Matchfield", "ABCD"),  		// Matches "ABCD"
+    new BsonDocument("Matchfield", BsonNull.Value)  // Matches null
+})));
