@@ -3,3 +3,24 @@ pipeline.Add(new BsonDocument("$match", new BsonDocument("$or", new BsonArray
     new BsonDocument("Matchfield", "ABCD"),  		// Matches "ABCD"
     new BsonDocument("Matchfield", BsonNull.Value)  // Matches null
 })));
+
+db.createView(
+   "newView1",  // Name of the new view
+   "view1",     // Base view
+   [
+      { 
+         $unionWith: { 
+            coll: "coll1", 
+            pipeline: [
+               {
+                  $match: {
+                     uniqueField: { 
+                        $nin: db.view1.distinct("uniqueField") 
+                     }
+                  }
+               }
+            ]
+         }
+      }
+   ]
+);
