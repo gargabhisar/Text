@@ -61,3 +61,41 @@ public class LocalStorageTest
         driver.Quit();
     }
 }
+--------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> data = new List<string> { "Apple", "Banana", "Cherry" };
+
+        string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+
+        File.WriteAllText("data.json", json);
+
+        Console.WriteLine("JSON file saved successfully.");
+    }
+}
+-------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> data = new List<string> { "Apple", "Banana", "Cherry" };
+
+        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+        File.WriteAllText("data.json", json);
+
+        Console.WriteLine("JSON file saved successfully.");
+    }
+}
