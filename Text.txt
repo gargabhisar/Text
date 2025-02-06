@@ -24,3 +24,40 @@ db.createView(
       }
    ]
 );
+
+-------------------
+using System;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using NUnit.Framework;
+
+[TestFixture]
+public class LocalStorageTest
+{
+    private IWebDriver driver;
+
+    [SetUp]
+    public void Setup()
+    {
+        driver = new ChromeDriver();
+        driver.Navigate().GoToUrl("https://example.com"); // Replace with your URL
+    }
+
+    [Test]
+    public void GetLocalStorageValue()
+    {
+        IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+        
+        // Replace 'yourKey' with the actual key stored in localStorage
+        string value = (string)js.ExecuteScript("return localStorage.getItem('yourKey');");
+        
+        Console.WriteLine("LocalStorage Value: " + value);
+        Assert.IsNotNull(value, "Value should not be null");
+    }
+
+    [TearDown]
+    public void Teardown()
+    {
+        driver.Quit();
+    }
+}
