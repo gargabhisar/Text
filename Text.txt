@@ -1,3 +1,4 @@
+db = db.getSiblingDB("SalesDashboard");
 db.getCollection("Books").aggregate(
     [
         {
@@ -35,10 +36,16 @@ db.getCollection("Books").aggregate(
             }
         }, 
         {
+            "$match" : {
+                "Publications._id" : ObjectId("677800910b61ed7b0b6b6e71")
+            }
+        }, 
+        {
             "$project" : {
-                "Title" : "$Books.Title",
-                "Name" : "$Authors.Name",
-                "PublicationName" : "$Publications.PublicationName"
+                "Books.Title" : "$Books.Title",
+                "Authors.Name" : "$Authors.Name",
+                "Publications.PublicationName" : "$Publications.PublicationName",
+                "_id" : NumberInt(0)
             }
         }
     ], 
