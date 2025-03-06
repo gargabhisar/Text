@@ -37,6 +37,69 @@ db.getCollection("Books").aggregate(
         }, 
         {
             "$match" : {
+                "Authors._id" : {
+                    "$in" : [
+                        ObjectId("67835e5c431ff619424404f7"),
+                        ObjectId("678684126e54166844b02e0b")
+                    ]
+                }
+            }
+        }, 
+        {
+            "$project" : {
+                "Books.Title" : "$Books.Title",
+                "Authors.Name" : "$Authors.Name",
+                "Publications.PublicationName" : "$Publications.PublicationName",
+                "_id" : NumberInt(0)
+            }
+        }
+    ], 
+    {
+        "allowDiskUse" : true
+    }
+);
+
+----------------------------------------------------------------------
+
+db = db.getSiblingDB("SalesDashboard");
+db.getCollection("Books").aggregate(
+    [
+        {
+            "$project" : {
+                "_id" : NumberInt(0),
+                "Books" : "$$ROOT"
+            }
+        }, 
+        {
+            "$lookup" : {
+                "localField" : "Books.AuthorId",
+                "from" : "Authors",
+                "foreignField" : "_id",
+                "as" : "Authors"
+            }
+        }, 
+        {
+            "$unwind" : {
+                "path" : "$Authors",
+                "preserveNullAndEmptyArrays" : false
+            }
+        }, 
+        {
+            "$lookup" : {
+                "localField" : "Authors.PublicationId",
+                "from" : "Publications",
+                "foreignField" : "_id",
+                "as" : "Publications"
+            }
+        }, 
+        {
+            "$unwind" : {
+                "path" : "$Publications",
+                "preserveNullAndEmptyArrays" : false
+            }
+        }, 
+        {
+            "$match" : {
                 "Publications._id" : ObjectId("677800910b61ed7b0b6b6e71")
             }
         }, 
