@@ -1,3 +1,45 @@
+using System;
+using System.Data;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a DataTable
+        DataTable table = new DataTable();
+
+        // Add columns
+        table.Columns.Add("ID", typeof(int));
+        table.Columns.Add("Name", typeof(string));
+        table.Columns.Add("Age", typeof(int));
+        table.Columns.Add("City", typeof(string));
+
+        // Add rows
+        table.Rows.Add(1, "Alice", 25, "New York");
+        table.Rows.Add(2, "Bob", 30, "Los Angeles");
+        table.Rows.Add(3, "Charlie", 28, "Chicago");
+        table.Rows.Add(4, "David", 35, "Houston");
+        table.Rows.Add(5, "Eve", 22, "Miami");
+        table.Rows.Add(6, "Frank", 40, "Seattle");
+
+        // Select row where ID = 3
+        int searchID = 3;
+        DataRow[] result = table.Select($"ID = {searchID}");
+
+        // Display selected row
+        if (result.Length > 0)
+        {
+            Console.WriteLine("Selected Row:");
+            Console.WriteLine($"ID: {result[0]["ID"]}, Name: {result[0]["Name"]}, Age: {result[0]["Age"]}, City: {result[0]["City"]}");
+        }
+        else
+        {
+            Console.WriteLine("No matching record found.");
+        }
+    }
+}
+
+------------------------------------------------------------------------------------
 db = db.getSiblingDB("SalesDashboard");
 db.getCollection("Books").aggregate(
     [
