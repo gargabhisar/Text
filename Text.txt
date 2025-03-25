@@ -1,3 +1,46 @@
+
+In C#, you can use the Regex.Split() method with the same regex pattern:
+
+C# Code:
+
+using System;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        string text = "One,,Two,\"Three, Four\",Five";
+
+        // Regex to split by commas but not inside double quotes
+        string pattern = @",(?=(?:[^""]*""[^""]*"")*[^""]*$)";
+
+        string[] result = Regex.Split(text, pattern);
+
+        // Print the result
+        foreach (string item in result)
+        {
+            Console.WriteLine(item);
+        }
+    }
+}
+
+Output:
+
+One
+
+Two
+Three, Four
+Five
+
+Explanation:
+	•	This correctly splits by commas but ignores commas inside double quotes.
+	•	The empty value between One,,Two is correctly returned as an empty string.
+	•	The quoted "Three, Four" remains intact.
+
+Let me know if you need any modifications!
+____________
+
 You can use the following regex pattern to split a string by commas but not when the comma is inside double quotes (""):
 
 ,(?=(?:[^"]*"[^"]*")*[^"]*$)
