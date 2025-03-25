@@ -1,3 +1,28 @@
+You can use the following regex pattern to split a string by commas but not when the comma is inside double quotes (""):
+
+,(?=(?:[^"]*"[^"]*")*[^"]*$)
+
+Explanation:
+	•	, → Matches a comma.
+	•	(?=...) → Ensures the following condition is met (lookahead).
+	•	(?:[^"]*"[^"]*")* → Matches complete quoted substrings (if any).
+	•	[^"]*$ → Ensures the comma is not inside double quotes by checking that an even number of quotes follow it.
+
+Example:
+
+Input:
+
+One,Two,"Three, Four",Five
+
+Output:
+
+["One", "Two", "Three, Four", "Five"]
+
+Let me know if you need any modifications!
+
+--------------
+
+
 using System;
 using System.Data;
 
