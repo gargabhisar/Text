@@ -1,4 +1,23 @@
+Hi [Recipient's Name],
 
+I hope you're doing well.
+
+I’d like to refer Arushi Garg for any opportunities within your HR team. Arushi is an accomplished HR professional with over 4 years of experience in global onboarding, HR operations, employee engagement, and talent acquisition. She's currently working at ION Trading India Pvt. Ltd. and has previously been with Reliance Retail, managing complex HR workflows, shared services migration, and employee lifecycle management.
+
+What sets Arushi apart is her ability to seamlessly drive process optimization and compliance across geographies. She is well-versed in HRIS systems like SuccessFactors, and proficient in creating data-driven dashboards to support strategic decision-making. She also brings a strong background in global mobility, payroll coordination, and grievance management.
+
+Arushi is a proactive communicator, a team player, and someone who always strives to enhance employee experience. I believe she would be a valuable addition to any HR team looking for a dynamic, process-oriented, and people-focused professional.
+
+Feel free to reach out to her at arushigarg12@gmail.com or +91 9971751850.
+
+Let me know if you need any more information.
+
+Best regards,
+[Your Full Name]
+[Your Position / Company, if applicable]
+[Your Contact Info]
+
+---------------------------------------------------------------------------
 In C#, you can use the Regex.Split() method with the same regex pattern:
 
 C# Code:
